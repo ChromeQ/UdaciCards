@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { submitEntry } from '../utils/api';
 import { addDeck } from '../actions';
 import { gray, purple, white, red } from '../utils/colours';

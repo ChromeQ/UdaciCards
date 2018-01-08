@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { fetchDecks } from '../utils/api';
 import { receiveDecks } from '../actions';
+import { gray } from '../utils/colours';
 
 class DeckList extends Component {
 
@@ -14,20 +15,51 @@ class DeckList extends Component {
 		});
 	}
 
+	handleDeckPress = (deck) => {
+		this.props.navigation.navigate('deckDetails', { deck });
+	}
+
 	render() {
 		const { decks } = this.props;
 
 		return (
-			<View>
+			<View style={styles.container}>
 				{Object.keys(decks).map(key => {
 					const deck = decks[key];
 
-					return <Text key={key}>{deck.title}</Text>;
+					return (
+						<TouchableOpacity onPress={() => this.handleDeckPress(deck)} key={key} style={styles.deck}>
+							<Text style={styles.deckTitle}>{deck.title}</Text>
+							<Text style={styles.deckCount}>{deck.questions.length} cards</Text>
+						</TouchableOpacity>
+					);
 				})}
 			</View>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		padding: 20
+	},
+	deck: {
+		padding: 20,
+		paddingBottom: 10,
+		borderWidth: 1,
+		borderColor: gray,
+		marginBottom: 20,
+		borderRadius: 2
+	},
+	deckTitle: {
+		fontSize: 24,
+		marginBottom: 24
+	},
+	deckCount: {
+		color: gray,
+		fontSize: 16
+	}
+});
 
 function mapStateToProps(state) {
 	return {
