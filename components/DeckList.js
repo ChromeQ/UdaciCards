@@ -15,8 +15,8 @@ class DeckList extends Component {
 		});
 	}
 
-	handleDeckPress = (deck) => {
-		this.props.navigation.navigate('deckDetails', { deck });
+	handleDeckPress = (key) => {
+		this.props.navigation.navigate('deckDetails', { key });
 	}
 
 	render() {
@@ -28,7 +28,7 @@ class DeckList extends Component {
 					const deck = decks[key];
 
 					return (
-						<TouchableOpacity onPress={() => this.handleDeckPress(deck)} key={key} style={styles.deck}>
+						<TouchableOpacity onPress={() => this.handleDeckPress(key)} key={key} style={styles.deck}>
 							<Text style={styles.deckTitle}>{deck.title}</Text>
 							<Text style={styles.deckCount}>{deck.questions.length} cards</Text>
 						</TouchableOpacity>

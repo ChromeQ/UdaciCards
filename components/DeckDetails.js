@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { gray } from '../utils/colours';
 
-export default class DeckDetails extends Component {
+class DeckDetails extends Component {
 
 	static navigationOptions = ({ navigation }) => {
-		const { deck } = navigation.state.params;
+		const { key } = navigation.state.params;
 
 		return {
-			title: `UdaciCards: ${deck.title}`
+			title: `UdaciCards: ${key}`
 		};
 	}
 
+	handleAddCardPress = () => {
+		const { navigation } = this.props;
+
+		navigation.navigate('addCard', { key: navigation.state.params.key });
+	}
+
 	render() {
-		const { deck } = this.props.navigation.state.params;
+		const { deck } = this.props;
 
 		return (
 			<View style={styles.container}>
@@ -23,7 +30,7 @@ export default class DeckDetails extends Component {
 				</View>
 
 				<View style={styles.buttonContainer}>
-					<TouchableOpacity style={[styles.button, { borderRightWidth: 1, borderColor: gray }]}>
+					<TouchableOpacity onPress={this.handleAddCardPress} style={[styles.button, { borderRightWidth: 1, borderColor: gray }]}>
 						<Text style={styles.buttonText}>Add Card</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.button}>
@@ -75,3 +82,13 @@ const styles = StyleSheet.create({
 		fontSize: 16
 	}
 });
+
+function mapStateToProps(state, ownProps) {
+	const { key } = ownProps.navigation.state.params;
+
+	return {
+		deck: state[key]
+	};
+}
+
+export default connect(mapStateToProps)(DeckDetails);
