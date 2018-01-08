@@ -12,18 +12,18 @@ import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 
 const Tabs = TabNavigator({
-    addDeck: {
-        screen: AddDeck,
-        navigationOptions: {
-            tabBarLabel: 'Add Deck',
-            tabBarIcon: ({ tintColor }) => <Ionicons name='plus-outline' size={30} color={tintColor} />
-        }
-    },
     deckList: {
         screen: DeckList,
         navigationOptions: {
             tabBarLabel: 'Decks',
             tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-outline' size={30} color={tintColor} />
+        }
+    },
+    addDeck: {
+        screen: AddDeck,
+        navigationOptions: {
+            tabBarLabel: 'Add Deck',
+            tabBarIcon: ({ tintColor }) => <Ionicons name='plus-outline' size={30} color={tintColor} />
         }
     }
 }, {
