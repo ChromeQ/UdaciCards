@@ -12,6 +12,7 @@ import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckDetails from './components/DeckDetails';
 import AddCard from './components/AddCard';
+import DeckQuiz from './components/DeckQuiz';
 
 const Tabs = TabNavigator({
     deckList: {
@@ -57,7 +58,15 @@ const MainNavigator = StackNavigator({
     addCard: {
         screen: AddCard,
         navigationOptions: {
-            title: 'Add Card',
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: purple
+            }
+        }
+    },
+    deckQuiz: {
+        screen: DeckQuiz,
+        navigationOptions: {
             headerTintColor: white,
             headerStyle: {
                 backgroundColor: purple

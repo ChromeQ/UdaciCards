@@ -19,6 +19,12 @@ class DeckDetails extends Component {
 		navigation.navigate('addCard', { key: navigation.state.params.key });
 	}
 
+	handleStartQuizPress = () => {
+		const { navigation } = this.props;
+
+		navigation.navigate('deckQuiz', { key: navigation.state.params.key });
+	}
+
 	render() {
 		const { deck } = this.props;
 
@@ -34,7 +40,7 @@ class DeckDetails extends Component {
 						<Text style={styles.buttonText}>Add Card</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.button}>
-						<Text style={[styles.buttonText, { fontWeight: 'bold' }]}>Start Quiz</Text>
+						<Text onPress={this.handleStartQuizPress} style={[styles.buttonText, { fontWeight: 'bold' }]}>Start Quiz</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

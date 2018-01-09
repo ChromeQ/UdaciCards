@@ -13,6 +13,14 @@ class AddCard extends Component {
 		error: ''
 	}
 
+	static navigationOptions = ({ navigation }) => {
+		const { key } = navigation.state.params;
+
+		return {
+			title: `Add Card: ${key}`
+		};
+	}
+
 	handleTextChange = (text, input) => {
 		this.setState({
 			[input]: text,
