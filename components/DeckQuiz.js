@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { gray, black, white, red, green } from '../utils/colours';
+import { gray, black, white, red, orange, green, purple } from '../utils/colours';
 
 class DeckDetails extends Component {
 
@@ -40,14 +40,49 @@ class DeckDetails extends Component {
 		}));
 	}
 
+	restartQuiz = () => {
+		this.setState({
+			counter: 1,
+			flipped: false,
+			correct: 0,
+			incorrect: 0
+		});
+	}
+
+	goBack = () => {
+		this.props.navigation.goBack();
+	}
+
 	render() {
 		const { deck } = this.props;
-		const { counter, flipped } = this.state;
+		const { counter, flipped, correct } = this.state;
 		const card = deck.questions[counter - 1];
 
 		if (counter > deck.questions.length) {
+			const percentage = Math.round((correct / deck.questions.length) * 100);
+			const color = percentage < 33 ? red : (percentage < 66 ? orange : green);
+
 			return (
-				<View><Text>Summary screen</Text></View>
+				<View style={styles.container}>
+					<Text style={styles.summaryText}>You correctly answered
+						<Text style={styles.summaryCount}> {correct} </Text>
+						out of
+						<Text style={styles.summaryCount}> {deck.questions.length}</Text>
+					</Text>
+
+					<View style={styles.summaryScore}>
+						<Text style={{ fontSize: 120, color }}>{percentage}%</Text>
+					</View>
+
+					<View>
+						<TouchableOpacity style={[styles.button, { backgroundColor: purple }]} onPress={this.restartQuiz}>
+							<Text style={styles.buttonText}>Restart Quiz</Text>
+						</TouchableOpacity>
+						<TouchableOpacity style={styles.button} onPress={this.goBack}>
+							<Text style={[styles.buttonText, { color: black }]}>Back</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
 			);
 		}
 
@@ -122,11 +157,25 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		alignSelf: 'center',
 		marginBottom: 20,
-		borderRadius: 2
+		borderRadius: 2,
+		borderColor: gray,
+		borderWidth: 1
 	},
 	buttonText: {
 		color: white,
 		fontSize: 20
+	},
+	summaryText: {
+		fontSize: 18,
+		textAlign: 'center'
+	},
+	summaryCount: {
+		fontSize: 30
+	},
+	summaryScore: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 });
 
