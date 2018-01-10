@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { fetchDecks } from '../utils/api';
 import { receiveDecks } from '../actions';
 import { gray, white, purple } from '../utils/colours';
@@ -28,7 +28,7 @@ class DeckList extends Component {
 		const decksCount = Object.keys(decks).length;
 
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				{decksCount === 0
 					? (
 						<View>
@@ -51,7 +51,7 @@ class DeckList extends Component {
 						})
 					)
 				}
-			</View>
+			</ScrollView>
 		);
 	}
 }
