@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
+This app is part of the submission of the Udacity React Nanodegree. It is for the React Native course and it is a simple flash card app designed and tested on Android devices. To run this app please follow the instructions below but you can get to it quickly by typing `npm i && npm start` into the console where the code is cloned to.
+
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
