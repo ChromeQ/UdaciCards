@@ -26,13 +26,13 @@ class DeckDetails extends Component {
 	}
 
 	render() {
-		const { deck } = this.props;
+		const { deck: { title, questions: { length }}} = this.props;
 
 		return (
 			<View style={styles.container}>
 				<View style={styles.deck}>
-					<Text style={styles.deckTitle}>{deck.title}</Text>
-					<Text style={styles.deckCount}>{deck.questions.length} cards</Text>
+					<Text style={styles.deckTitle}>{title}</Text>
+					<Text style={styles.deckCount}>{length} cards</Text>
 				</View>
 
 				<View style={styles.buttonContainer}>

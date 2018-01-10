@@ -26,21 +26,25 @@ class DeckDetails extends Component {
 	}
 
 	markCorrect = () => {
-		this.setState(state => ({
-			counter: state.counter + 1,
-			flipped: false,
-			correct: state.correct + 1
-		}));
+		this.setState(prevState => {
+			return {
+				counter: prevState.counter + 1,
+				flipped: false,
+				correct: prevState.correct + 1
+			};
+		});
 
 		this.quizCompleteCheck();
 	}
 
 	markIncorrect = () => {
-		this.setState(state => ({
-			counter: state.counter + 1,
-			flipped: false,
-			incorrect: state.incorrect + 1
-		}));
+		this.setState(prevState => {
+			return {
+				counter: prevState.counter + 1,
+				flipped: false,
+				incorrect: prevState.incorrect + 1
+			};
+		});
 
 		this.quizCompleteCheck();
 	}
@@ -87,7 +91,7 @@ class DeckDetails extends Component {
 					</Text>
 
 					<View style={styles.summaryScore}>
-						<Text style={{ fontSize: 120, color }}>{percentage}%</Text>
+						<Text style={[styles.summaryScoreText, { color }]}>{percentage}%</Text>
 					</View>
 
 					<View>
@@ -192,6 +196,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	summaryScoreText: {
+		fontSize: 120
 	}
 });
 
