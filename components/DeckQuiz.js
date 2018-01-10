@@ -93,7 +93,7 @@ class DeckDetails extends Component {
 				</View>
 
 				<View>
-					{flipped
+					{!flipped
 						? (<View style={styles.card}>
 							<Text style={styles.cardText}>{card.question}</Text>
 						</View>)
