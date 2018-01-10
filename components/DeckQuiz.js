@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { clearLocalNotifications, setLocalNotification } from '../utils/helpers';
 import { gray, black, white, red, orange, green, purple } from '../utils/colours';
 
 class DeckDetails extends Component {
@@ -30,6 +31,8 @@ class DeckDetails extends Component {
 			flipped: false,
 			correct: state.correct + 1
 		}));
+
+		this.quizCompleteCheck();
 	}
 
 	markIncorrect = () => {
@@ -38,6 +41,19 @@ class DeckDetails extends Component {
 			flipped: false,
 			incorrect: state.incorrect + 1
 		}));
+
+		this.quizCompleteCheck();
+	}
+
+	quizCompleteCheck = () => {
+		const { deck } = this.props;
+		const { counter } = this.state;
+
+		// If user has answered the last question then the quiz is complete, reset the notification for the next day
+		if (counter === deck.questions.length) {
+			clearLocalNotifications()
+				.then(setLocalNotification);
+		}
 	}
 
 	restartQuiz = () => {
