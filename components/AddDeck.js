@@ -39,7 +39,7 @@ class AddDeck extends Component {
 			entry: deck
 		});
 
-		navigation.navigate('deckList', { deck });
+		navigation.navigate('deckDetails', { key: title });
 	}
 
 	render() {
